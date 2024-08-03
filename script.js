@@ -25,5 +25,4 @@ function updateCart() {
 
 function checkout() {
     alert('Checking out...');
-    // Implement checkout logic here
 }
