@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Form</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: rgb(228, 226, 226);
+        }
+        .container{
+            width: 300px;
+            padding: 15px;
+            margin-top: 100px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: white;
+        }
+        h3{
+            text-align: center;
+        }
+        input{
+            padding: 5px;
+            width: 200px;
+        }
+        #email{
+            margin-top: 20px;
+        }
+        #about{
+            margin-top: 20px;
+            padding: 10px;
+        }
+        #btn{
+            margin-top: 10px;
+            background-color: rgb(216, 212, 212);
+            border: none;
+            padding: 7px;
+            width: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Write Your Thoughts</h3>
+        <form action="review" id="form">
+            <input type="text" placeholder="Enter Your Name" required>
+            <input type="email" id="email" placeholder="Enter Your E-mail" required>
+            <p id="error-msg" style="color: red;"></p>
+            <textarea name="about" id="about" rows="5" cols="35" placeholder="Write Your Experience ..." required></textarea>
+            <button id="btn">Submit</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('form').addEventListener('submit',function(event){
+            event.preventDefault();
+            validateEmail();
+            return;
+        });
+        function validateEmail(){
+            const email=document.getElementById('email').value;
+            const errorMsg=document.getElementById('error-msg');
+            const pattern=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if(pattern.test(email)){
+                errorMsg.textContent='';
+                alert('Thank for your Review. Visit Next Time');
+            }
+            else{
+                error.Msg.textContent='Please enter a valid E-mail Id';
+            }
+        }
+    </script>
+</body>
+</html>

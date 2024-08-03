@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Box</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(241, 230, 230);
+        }
+        .chat-container{
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            text-align: center;
+            padding: 15px;
+        }
+        .chat-body {
+            height: 250px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        .chat-message.user {
+            background-color: #f8f5ee;
+            text-align: right;
+        }
+        .chat-message.bot {
+            background-color: #f0f0f0;
+            text-align: left;
+        }
+        .chat-footer {
+            padding: 10px;
+            display: flex;
+            border-top: 1px solid #949393;
+        }
+        button {
+            padding: 7px;
+            width: 60px;
+            border: none;
+            border-radius: 5px;
+            background-color: #7da0c5;
+            color: white;
+            cursor: pointer;
+        }
+        input {
+            flex: 1;
+            padding: 7px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        Welcome To SHK RESTAURANT
+        <div class="chat-header">
+            Chat Box
+        </div>
+        <div class="chat-body" id="chatBody">
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script>
+        function sendMessage() {
+    const chatBody = document.getElementById('chatBody');
+    const chatInput = document.getElementById('chatInput');
+    const message = chatInput.value.trim();
+
+    if (message) {
+        const userMessage = document.createElement('div');
+        userMessage.className = 'chat-message user';
+        userMessage.textContent = message;
+        chatBody.appendChild(userMessage);
+
+        chatInput.value = '';
+
+        setTimeout(() => {
+            const botMessage = document.createElement('div');
+            botMessage.className = 'chat-message bot';
+            botMessage.textContent = "STAFF : " + generateBotResponse(message);
+            chatBody.appendChild(botMessage);
+        }, 1000);
+    }
+}
+
+function generateBotResponse(userMessage) {
+    const responses = [
+        "Hello! How can I assist you today?",
+        "I'm here to help!",
+        "Can you please provide more details?",
+        "Thank you for reaching out!",
+        "I'm not sure about that. Let me check."
+    ];
+
+    return responses[Math.floor(Math.random() * responses.length)];
+}
+
+document.getElementById('chatInput').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+    </script>
+</body>
+</html>
